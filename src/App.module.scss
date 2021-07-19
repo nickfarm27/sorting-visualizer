@@ -1,0 +1,9 @@
+.App {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background: var(--theme-page-background);
+    color: var(--theme-page-text);
+    transition: background 1s ease, color 500ms ease;
+}
