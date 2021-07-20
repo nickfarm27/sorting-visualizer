@@ -1,60 +1,68 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { settingsActions } from "../../../store/settings-slice";
 import styles from "./Visualizer.module.scss";
-
-const randomArray = (length: number, min: number, max: number) =>
-    [...new Array(length)].map(() =>
-        Math.round(Math.random() * (max - min) + min)
-    );
-//? if you want intervals of 5
-// [...new Array(length)].map(() => Math.ceil((Math.random() * (max - min) + min)/5)*5);
 
 interface Props {}
 
 const Visualizer = (props: Props) => {
-    const [array, setArray] = useState(randomArray(50, 100, 500));
+    const array = useAppSelector((state) => state.settings.array);
+    const speed = useAppSelector((state) => state.settings.speed);
+    const dispatch = useAppDispatch();
+
     const [num, setNum] = useState(0);
-    const [speed, setSpeed] = useState(501);
+
     const speedRef = useRef(speed);
     speedRef.current = speed;
 
+    const refs = useRef(
+        [...new Array(array.length)].map(() => React.createRef<HTMLDivElement>())
+    );
+
+    useEffect(() => {
+        for (let i = 0; i< array.length; i++) {
+            refs.current[i] = refs.current[i] || React.createRef();
+        }
+    }, [array.length]);
+
     async function bubbleSort(array: Array<number>) {
         for (let i = 0; i < array.length; i++) {
-            for (let j = 0; j < array.length; j++) {
+            for (let j = 0; j < array.length - 1; j++) {
+                const curBarToSwap1 = refs.current[j].current;
+                const curBarToSwap2 = refs.current[j + 1].current;
+                if (curBarToSwap1)
+                    curBarToSwap1.style.backgroundColor = "green";
+                if (curBarToSwap2)
+                    curBarToSwap2.style.backgroundColor = "green";
+                await new Promise((r) =>
+                    setTimeout(r, 1000 - speedRef.current)
+                );
                 if (array[j] > array[j + 1]) {
                     let temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
-                    setArray(() => [...array]);
-                    await new Promise((r) => setTimeout(r, 100));
+                    dispatch(settingsActions.updateArray([...array]));
+                    await new Promise((r) =>
+                        setTimeout(r, 1000 - speedRef.current)
+                    );
                 }
+                if (curBarToSwap1) curBarToSwap1.style.backgroundColor = "blue";
+                if (curBarToSwap2) curBarToSwap2.style.backgroundColor = "blue";
             }
         }
-        return array;
+        await new Promise((r) => setTimeout(r, 1000 - speedRef.current));
     }
 
     function sortButtonHandler() {
         const newArray = [...array];
         bubbleSort(newArray);
-        // setTimeout(() => {
-        //     setArray(newArray);
-        // }, 1000)
     }
 
     async function increaseNumHandler() {
         for (let i = 0; i < 100; i++) {
             setNum((prevNum) => prevNum + 1);
-            await new Promise((r) => setTimeout(r, speedRef.current));
+            await new Promise((r) => setTimeout(r, 1000 - speedRef.current));
         }
-    }
-
-    function decreaseSpeedHandler() {
-        if (speed > 250) {
-            setSpeed((prevSpeed) => prevSpeed - 250);
-        }
-    }
-
-    function increaseSpeedHandler() {
-        setSpeed((prevSpeed) => prevSpeed + 500);
     }
 
     return (
@@ -71,6 +79,7 @@ const Visualizer = (props: Props) => {
                                 border: "solid black 1px",
                                 transition: "all 100ms ease",
                             }}
+                            ref={refs.current[index]}
                         ></div>
                     );
                 })}
@@ -78,8 +87,6 @@ const Visualizer = (props: Props) => {
             <button onClick={sortButtonHandler}>Sort</button>
             <h1>{num}</h1>
             <button onClick={increaseNumHandler}>Increase Num</button>
-            <button onClick={decreaseSpeedHandler}>Decrease Speed</button>
-            <button onClick={increaseSpeedHandler}>Increase Speed</button>
         </div>
     );
 };
