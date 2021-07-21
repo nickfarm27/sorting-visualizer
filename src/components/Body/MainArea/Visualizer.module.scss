@@ -3,3 +3,23 @@
     flex-direction: row;
     flex-wrap: nowrap;
 }
+
+.bars {
+    background-color: rgb(0, 60, 255);
+    border-radius: 4px;
+    border: solid 1px black;
+    transition: all 100ms ease;
+    margin: 2px;
+}
+
+.sorted {
+    background-color: darkturquoise;
+}
+
+.swapping {
+    background-color: cadetblue;
+}
+
+.min {
+    background-color: deeppink;
+}

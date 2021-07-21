@@ -20,6 +20,8 @@ const SliderInput = (props: Props) => {
         const value = Number(e.currentTarget.value);
         if (value < props.min) {
             dispatch(props.action(props.min))
+        } else if (value > props.max) {
+            dispatch(props.action(props.max))
         } else {
             dispatch(props.action(value))
         }

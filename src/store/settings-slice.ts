@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./index";
 
+const MIN_SIZE = 5;
+const MAX_SIZE = 70;
+const DEFAULT_ARRAY_SIZE = 50;
+
 const randomArray = (length: number, min: number, max: number) =>
     [...new Array(length)].map(() =>
         Math.round(Math.random() * (max - min) + min)
@@ -17,9 +21,9 @@ interface SettingsState {
 
 const initialState: SettingsState = {
     speed: 100,
-    arraySize: 50,
+    arraySize: DEFAULT_ARRAY_SIZE,
     chosenAlgorithm: "BUBBLE",
-    array: randomArray(50, 100, 500),
+    array: randomArray(DEFAULT_ARRAY_SIZE, MIN_SIZE, MAX_SIZE),
 };
 
 const settingsSlice = createSlice({
@@ -28,7 +32,7 @@ const settingsSlice = createSlice({
     reducers: {
         changeArraySize: (state, action: PayloadAction<number>) => {
             state.arraySize = action.payload;
-            state.array = randomArray(action.payload, 100, 500)
+            state.array = randomArray(action.payload, MIN_SIZE, MAX_SIZE);
         },
         changeSpeed: (state, action: PayloadAction<number>) => {
             state.speed = action.payload;
@@ -37,8 +41,8 @@ const settingsSlice = createSlice({
             state.array = action.payload;
         },
         resetArray: (state) => {
-            state.array = randomArray(state.arraySize, 100, 500)
-        }
+            state.array = randomArray(state.arraySize, MIN_SIZE, MAX_SIZE);
+        },
     },
 });
 
