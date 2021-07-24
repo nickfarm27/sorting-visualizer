@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { BUBBLE_SORT } from "./constants";
 import type { RootState } from "./index";
 
 const MIN_SIZE = 5;
-const MAX_SIZE = 70;
-const DEFAULT_ARRAY_SIZE = 50;
+const MAX_SIZE = 50;
+const DEFAULT_ARRAY_SIZE = 20;
 
 const randomArray = (length: number, min: number, max: number) =>
     [...new Array(length)].map(() =>
@@ -17,13 +18,17 @@ interface SettingsState {
     arraySize: number;
     chosenAlgorithm: string;
     array: Array<number>;
+    darkTheme: boolean;
+    sorting: boolean;
 }
 
 const initialState: SettingsState = {
     speed: 100,
     arraySize: DEFAULT_ARRAY_SIZE,
-    chosenAlgorithm: "BUBBLE",
+    chosenAlgorithm: BUBBLE_SORT,
     array: randomArray(DEFAULT_ARRAY_SIZE, MIN_SIZE, MAX_SIZE),
+    darkTheme: false,
+    sorting: false,
 };
 
 const settingsSlice = createSlice({
@@ -42,6 +47,18 @@ const settingsSlice = createSlice({
         },
         resetArray: (state) => {
             state.array = randomArray(state.arraySize, MIN_SIZE, MAX_SIZE);
+        },
+        changeAlgorithm: (state, action: PayloadAction<string>) => {
+            state.chosenAlgorithm = action.payload;
+        },
+        changeTheme: (state) => {
+            state.darkTheme = !state.darkTheme;
+        },
+        beginSorting: (state) => {
+            state.sorting = true;
+        },
+        endSorting: (state) => {
+            state.sorting = false;
         },
     },
 });

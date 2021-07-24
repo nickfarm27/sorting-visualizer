@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
@@ -16,21 +16,42 @@ interface Props {
 }
 
 const IconWithSliderInput = (props: Props) => {
+    const [displaySliderInput, setDisplaySliderInput] = useState(false);
+
+    const toggleSliderInputHandler = () => {
+        setDisplaySliderInput(true);
+    };
+
+    // const mouseOverHandler = () => {
+    //     setDisplaySliderInput(true);
+    // };
+
+    // const mouseOutHandler = () => {
+    //     setDisplaySliderInput(false);
+    // };
+
     return (
-        <div className={styles.icon}>
+        <button
+            className={styles.icon}
+            onClick={toggleSliderInputHandler}
+            // onMouseOver={mouseOverHandler}
+            // onMouseOut={mouseOutHandler}
+        >
             <FontAwesomeIcon
                 icon={props.icon}
                 style={{ fontSize: props.fontSize }}
             />
             <p className={styles.name}>{props.name}</p>
-            <SliderInput
-                class={styles["slider-input"]}
-                min={props.min}
-                max={props.max}
-                value={props.value}
-                action={props.action}
-            />
-        </div>
+            {displaySliderInput && (
+                <SliderInput
+                    class={styles["slider-input"]}
+                    min={props.min}
+                    max={props.max}
+                    value={props.value}
+                    action={props.action}
+                />
+            )}
+        </button>
     );
 };
 

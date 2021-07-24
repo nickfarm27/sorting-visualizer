@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { selectionSort } from "../../../algorithms/selectionSort";
 import { bubbleSort } from "../../../algorithms/bubbleSort";
+import { BUBBLE_SORT, SELECTION_SORT } from "../../../store/constants";
 import styles from "./Visualizer.module.scss";
 
 interface Props {}
@@ -9,9 +10,8 @@ interface Props {}
 const Visualizer = (props: Props) => {
     const array = useAppSelector((state) => state.settings.array);
     const speed = useAppSelector((state) => state.settings.speed);
+    const algorithm = useAppSelector((state) => state.settings.chosenAlgorithm);
     const dispatch = useAppDispatch();
-
-    const [num, setNum] = useState(0);
 
     const speedRef = useRef(speed);
     speedRef.current = speed;
@@ -28,18 +28,21 @@ const Visualizer = (props: Props) => {
 
     function sortButtonHandler() {
         const newArray = [...array];
-        dispatch(selectionSort(newArray, refs, speedRef));
-    }
-
-    async function increaseNumHandler() {
-        for (let i = 0; i < 100; i++) {
-            setNum((prevNum) => prevNum + 1);
-            await new Promise((r) => setTimeout(r, 1000 - speedRef.current));
+        switch (algorithm) {
+            case BUBBLE_SORT:
+                dispatch(bubbleSort(newArray, refs, speedRef));
+                break;
+            case SELECTION_SORT:
+                dispatch(selectionSort(newArray, refs, speedRef));
+                break;
+        
+            default:
+                break;
         }
     }
 
     return (
-        <div>
+        <>
             <div className={styles.visualizer}>
                 {array.map((value, index) => {
                     return (
@@ -47,18 +50,17 @@ const Visualizer = (props: Props) => {
                             className={styles.bars}
                             key={index}
                             style={{
-                                width: "0.8vw",
-                                height: `${value}vh`,
+                                width: "20px",
+                                height: `${(value/50)*95}%`,
                             }}
                             ref={refs.current[index]}
                         ></div>
                     );
                 })}
             </div>
-            <button onClick={sortButtonHandler}>Sort</button>
-            <h1>{num}</h1>
-            <button onClick={increaseNumHandler}>Increase Num</button>
-        </div>
+            <button className={styles["sort-button"]} onClick={sortButtonHandler}>Sort</button>
+            <p className={styles.footer}>Made with ❤️ by Nicholas Farm</p>
+        </>
     );
 };
 

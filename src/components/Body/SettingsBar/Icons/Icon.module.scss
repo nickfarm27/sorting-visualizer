@@ -1,31 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
-
 .icon {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: aquamarine;
+    color: var(--theme-default-icon-text);
+    background-color: var(--theme-page-background);
+    border: none;
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 6px 0;
     padding: 0;
     height: 64px;
     width: 64px;
     cursor: pointer;
+    
+}
+
+.icon:first-child {
+    margin-top: 3rem;
+}
+
+.icon:hover {
+    transition: box-shadow 300ms ease;
+    color: var(--theme-text-hover);
+    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+
+    // .slider-input {
+    //     display: flex;
+    // }
+}
+
+.icon:active {
+    transition: none;
+    box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
 }
 
 .name {
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 4px 0 0;
     padding: 0;
-    font-size: 0.6rem;
-    font-weight: 600;
-    cursor: pointer;
+    font-size: 0.55rem;
+    font-weight: 700;
     user-select: none;
 }
 
 .slider-input {
     position: absolute;
-    left: 100px;
+    left: 90px;
     z-index: 10;
+    background-color: white;
+    display: flex;
+    padding: 30px 20px;
+    border-radius: 10px;
 }

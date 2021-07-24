@@ -1,0 +1,18 @@
+.profile-icons {
+    margin-right: 20px;
+    font-size: 1.2rem;
+    color: var(--theme-default-icon-text);
+
+    a {
+        margin: 0 14px;
+    }
+
+    a:visited {
+        color: var(--theme-default-icon-text);
+    }
+
+    a:hover {
+        color: var(--theme-text-hover);
+    }
+}
+

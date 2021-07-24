@@ -10,6 +10,7 @@ export const selectionSort = (
     return async (dispatch: ThunkDispatch<any, any, any>) => {
         const n = array.length;
 
+        dispatch(settingsActions.beginSorting());
         for (let i = 0; i < n; i++) {
             // Finding the smallest number in the subarray
             let min = i;
@@ -59,5 +60,6 @@ export const selectionSort = (
             await new Promise((r) => setTimeout(r, 1000 - speedRef.current));
         }
         await new Promise((r) => setTimeout(r, 1000 - speedRef.current));
+        dispatch(settingsActions.endSorting());
     };
 };

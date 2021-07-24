@@ -27,7 +27,7 @@ const SettingsBar = (props: Props) => {
                 name="SPEED"
                 fontSize="1.5rem"
                 min={1}
-                max={999}
+                max={1000}
                 value={speed}
                 action={changeSpeedAction}
             />
@@ -36,7 +36,7 @@ const SettingsBar = (props: Props) => {
                 name="ARRAY SIZE"
                 fontSize="1.7rem"
                 min={3}
-                max={100}
+                max={40}
                 value={arraySize}
                 action={changeArraySizeAction}
             />

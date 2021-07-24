@@ -20,13 +20,13 @@ const NormalIcon = (props: Props) => {
     }
 
     return (
-        <div className={styles.icon} onClick={handleClick}>
+        <button className={styles.icon} onClick={handleClick}>
             <FontAwesomeIcon
                 icon={props.icon}
                 style={{ fontSize: props.fontSize }}
             />
             <p className={styles.name}>{props.name}</p>
-        </div>
+        </button>
     )
 }
 

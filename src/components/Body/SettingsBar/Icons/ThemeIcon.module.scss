@@ -1,3 +1,27 @@
+@keyframes zoom-in {
+    0% {
+        transform: scale(0.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 .theme-icon {
     margin-top: auto;
+    margin-bottom: 3rem;
+    font-size: 1.4rem;
+    
+    svg {
+        color: #FF744E;
+        cursor: pointer;
+        transition: transform 1s ease-in-out;
+        animation-name: zoom-in;
+        animation-duration: 1s;
+    }
+
+    svg:hover {
+        transform: rotateZ(360deg);
+    }
 }
