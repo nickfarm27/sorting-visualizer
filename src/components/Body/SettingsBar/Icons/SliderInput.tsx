@@ -1,5 +1,5 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import React from "react";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../../store/hooks";
 
 interface Props {

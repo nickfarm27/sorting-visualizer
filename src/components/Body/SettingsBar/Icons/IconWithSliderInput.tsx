@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
@@ -17,31 +17,36 @@ interface Props {
 
 const IconWithSliderInput = (props: Props) => {
     const [displaySliderInput, setDisplaySliderInput] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
 
-    const toggleSliderInputHandler = () => {
-        setDisplaySliderInput(true);
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (ref.current && !ref.current.contains(e.target as Node)) {
+                setDisplaySliderInput(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const toggleSliderInputHandler = (e: React.MouseEvent) => {
+        setDisplaySliderInput((prevValue) => !prevValue);
     };
 
-    // const mouseOverHandler = () => {
-    //     setDisplaySliderInput(true);
-    // };
-
-    // const mouseOutHandler = () => {
-    //     setDisplaySliderInput(false);
-    // };
-
     return (
-        <button
-            className={styles.icon}
-            onClick={toggleSliderInputHandler}
-            // onMouseOver={mouseOverHandler}
-            // onMouseOut={mouseOutHandler}
-        >
-            <FontAwesomeIcon
-                icon={props.icon}
-                style={{ fontSize: props.fontSize }}
-            />
-            <p className={styles.name}>{props.name}</p>
+        <div ref={ref} className={styles["icon-container"]}>
+            <button
+                className={styles.icon}
+                onClick={toggleSliderInputHandler}
+            >
+                <FontAwesomeIcon
+                    icon={props.icon}
+                    style={{ fontSize: props.fontSize }}
+                />
+                <p className={styles.name}>{props.name}</p>
+            </button>
             {displaySliderInput && (
                 <SliderInput
                     class={styles["slider-input"]}
@@ -51,7 +56,7 @@ const IconWithSliderInput = (props: Props) => {
                     action={props.action}
                 />
             )}
-        </button>
+        </div>
     );
 };
 

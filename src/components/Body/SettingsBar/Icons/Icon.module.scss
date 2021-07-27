@@ -1,3 +1,9 @@
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .icon {
     display: flex;
     flex-direction: column;
@@ -15,20 +21,12 @@
     
 }
 
-.icon:first-child {
-    margin-top: 3rem;
-}
-
 .icon:hover {
     transition: box-shadow 300ms ease;
     color: var(--theme-text-hover);
     box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
     -webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
     -moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
-
-    // .slider-input {
-    //     display: flex;
-    // }
 }
 
 .icon:active {
