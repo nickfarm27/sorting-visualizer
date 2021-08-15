@@ -49,3 +49,9 @@
     margin-bottom: 10px;
     font-size: 0.8rem;
 }
+
+@media (max-width: 880px) {
+    .bars {
+        margin: 0 4px;
+    }
+}

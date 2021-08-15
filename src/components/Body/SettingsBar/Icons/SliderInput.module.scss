@@ -1,0 +1,28 @@
+.slider-input {
+    position: absolute;
+    left: 90px;
+    z-index: 10;
+    background-color: white;
+    padding: 20px 20px;
+    border-radius: 10px;
+    display: flex;
+}
+
+input[type=number] {
+    padding: 10px;
+    width: 2.5rem;
+    border: 1px solid rgb(190, 190, 223);
+    border-radius: 5px;
+    margin-left: 10px;
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-sizing: content-box;
+    text-align: center;
+    outline: none;
+
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+        appearance: none;
+        margin: 0;
+    }
+}

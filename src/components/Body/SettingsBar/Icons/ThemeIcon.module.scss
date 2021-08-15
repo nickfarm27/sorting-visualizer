@@ -12,6 +12,10 @@
     margin-top: auto;
     margin-bottom: 3rem;
     font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
     svg {
         color: #FF744E;
@@ -23,5 +27,25 @@
 
     svg:hover {
         transform: rotateZ(360deg);
+    }
+}
+
+.name {
+    font-family: "Inter", sans-serif;
+    margin: 4px 0 0;
+    padding: 0;
+    font-size: 0.55rem;
+    font-weight: 700;
+    user-select: none;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .theme-icon {
+        margin: 0;
+        font-size: 1.3rem;
+    }
+    .name {
+        display: block;
     }
 }

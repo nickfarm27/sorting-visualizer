@@ -2,8 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import styles from "./ThemeIcon.module.scss";
 import { settingsActions } from "../../../../store/settings-slice";
+import styles from "./ThemeIcon.module.scss";
 
 interface Props {}
 
@@ -20,6 +20,7 @@ const ThemeIcon = (props: Props) => {
     return (
         <div className={styles["theme-icon"]}>
             <FontAwesomeIcon icon={displayIcon} onClick={changeThemeHandler} />
+            <p className={styles["name"]}>THEME</p>
         </div>
     );
 };

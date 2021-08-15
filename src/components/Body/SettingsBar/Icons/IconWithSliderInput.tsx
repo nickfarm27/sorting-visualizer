@@ -49,7 +49,6 @@ const IconWithSliderInput = (props: Props) => {
             </button>
             {displaySliderInput && (
                 <SliderInput
-                    class={styles["slider-input"]}
                     min={props.min}
                     max={props.max}
                     value={props.value}

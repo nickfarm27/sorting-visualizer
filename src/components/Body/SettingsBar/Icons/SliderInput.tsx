@@ -1,9 +1,9 @@
 import React from "react";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../../store/hooks";
+import styles from "./SliderInput.module.scss";
 
 interface Props {
-    class: string;
     min: number;
     max: number;
     value: number;
@@ -29,7 +29,7 @@ const SliderInput = (props: Props) => {
     };
 
     return (
-        <div className={props.class}>
+        <div className={styles["slider-input"]}>
             <input
                 type="range"
                 min={props.min}

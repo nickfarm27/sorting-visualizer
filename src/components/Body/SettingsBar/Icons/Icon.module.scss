@@ -19,22 +19,22 @@
     width: 64px;
     cursor: pointer;
     
+    &:hover {
+        transition: box-shadow 300ms ease;
+        color: var(--theme-text-hover);
+        box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+        -webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+        -moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+    }
+    
+    &:active {
+        transition: none;
+        box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
+        -moz-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
+    }
 }
 
-.icon:hover {
-    transition: box-shadow 300ms ease;
-    color: var(--theme-text-hover);
-    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
-    -webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
-}
-
-.icon:active {
-    transition: none;
-    box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
-    -webkit-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
-}
 
 .name {
     font-family: "Inter", sans-serif;
@@ -45,12 +45,6 @@
     user-select: none;
 }
 
-.slider-input {
-    position: absolute;
-    left: 90px;
-    z-index: 10;
-    background-color: white;
-    display: flex;
-    padding: 30px 20px;
-    border-radius: 10px;
+@media (max-width: 768px) {
+    
 }

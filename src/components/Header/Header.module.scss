@@ -13,8 +13,17 @@
 
 .title {
     font-family: "Bebas Neue", "Inter", sans-serif;
-    font-size: 1rem;
-    line-height: 0.85rem;
-    margin: 0 22px;
+    color: var(--theme-main-text-color);
+    font-size: 1.3rem;
+    line-height: 1.2rem;
+    margin-left: 15px;
     user-select: none;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.1rem;
+        line-height: 1rem;
+        margin-left: 20px;
+    }
 }

@@ -4,12 +4,14 @@ import {
     faSort,
     faRedoAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "./SettingsBar.module.scss";
 import ThemeIcon from "./Icons/ThemeIcon";
 import { useAppSelector } from "../../../store/hooks";
 import { settingsActions } from "../../../store/settings-slice";
 import NormalIcon from "./Icons/NormalIcon";
 import IconWithSliderInput from "./Icons/IconWithSliderInput";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import styles from "./SettingsBar.module.scss";
+import SortIcon from "./Icons/SortIcon";
 
 interface Props {}
 
@@ -19,13 +21,16 @@ const SettingsBar = (props: Props) => {
     const changeSpeedAction = settingsActions.changeSpeed;
     const changeArraySizeAction = settingsActions.changeArraySize;
     const resetArrayAction = settingsActions.resetArray;
+    const { width } = useWindowDimensions();
+
+
 
     return (
         <div className={styles["settings-bar"]}>
             <IconWithSliderInput
                 icon={faForward}
                 name="SPEED"
-                fontSize="1.5rem"
+                fontSize={width <= 768 ? "1.3rem" : "1.5rem"}
                 min={1}
                 max={1000}
                 value={speed}
@@ -34,13 +39,21 @@ const SettingsBar = (props: Props) => {
             <IconWithSliderInput
                 icon={faSort}
                 name="ARRAY SIZE"
-                fontSize="1.7rem"
+                fontSize={width <= 768 ? "1.3rem" : "1.7rem"}
                 min={3}
                 max={40}
                 value={arraySize}
                 action={changeArraySizeAction}
             />
-            <NormalIcon icon={faRedoAlt} name="RESET" fontSize="1.3rem" action={resetArrayAction} />
+            {width <= 768 && (
+                <SortIcon />
+            )}
+            <NormalIcon
+                icon={faRedoAlt}
+                name="RESET"
+                fontSize="1.3rem"
+                action={resetArrayAction}
+            />
             <ThemeIcon />
         </div>
     );

@@ -4,19 +4,23 @@
 
     button {
         font-family: "Inter", sans-serif;
-        font-weight: 400;
+        font-weight: 600;
         font-size: 0.95rem;
+        color: grey;
         padding: 0;
         margin: 0 20px;
         user-select: none;
         cursor: pointer;
         background-color: transparent;
         border: none;
+        
+        &:hover {
+            color: pink;
+        }
     }
 }
 
-
 .chosen {
-    font-weight: 700 !important;
+    color: black !important;
 }
 

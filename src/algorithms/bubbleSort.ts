@@ -8,7 +8,7 @@ export const bubbleSort = (
     speedRef: React.MutableRefObject<number>
 ) => {
     return async (dispatch: ThunkDispatch<any, any, any>) => {
-        dispatch(settingsActions.beginSorting());
+        // dispatch(settingsActions.beginSorting());
         for (let i = 0; i < array.length; i++) {
             for (let j = 0; j < array.length - 1; j++) {
                 const curBarToSwap1 = refs.current[j].current;

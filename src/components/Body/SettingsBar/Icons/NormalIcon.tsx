@@ -1,7 +1,6 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ActionCreatorWithoutPayload } from '@reduxjs/toolkit';
-import React from 'react'
 import { useAppDispatch } from '../../../../store/hooks';
 import styles from "./Icon.module.scss";
 
