@@ -55,3 +55,16 @@
         margin: 0 4px;
     }
 }
+
+@media (max-width: 768px) {
+    .visualizer {
+        height: 90%;
+        margin-bottom: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .bars {
+        margin: 0 2px;
+    }
+}

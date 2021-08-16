@@ -51,13 +51,13 @@ const Visualizer = (props: Props) => {
         } else if (!isSorting && isSortingRef.current) {
             isSortingRef.current = false;
         }
-    }, [isSorting, array, algorithm, dispatch])
+    }, [isSorting, array, algorithm, dispatch]);
 
     function sortButtonHandler() {
-        dispatch(settingsActions.beginSorting())
+        dispatch(settingsActions.beginSorting());
     }
 
-    const barWidth = array.length <= 20 ? "2vw" : "1vw";
+    const barWidth = array.length <= 20 ? "1.5vw" : "1vw";
 
     return (
         <>
@@ -76,13 +76,19 @@ const Visualizer = (props: Props) => {
                     );
                 })}
             </div>
-            <button
-                className={styles["sort-button"]}
-                onClick={sortButtonHandler}
-            >
-                Sort
-            </button>
-            <p className={styles.footer}>Made with ❤️ by Nicholas Farm</p>
+            {width > 768 && (
+                <>
+                    <button
+                        className={styles["sort-button"]}
+                        onClick={sortButtonHandler}
+                    >
+                        Sort
+                    </button>
+                    <p className={styles.footer}>
+                        Made with ❤️ by Nicholas Farm
+                    </p>
+                </>
+            )}
         </>
     );
 };
