@@ -12,12 +12,10 @@ const Algorithms = (props: Props) => {
     );
     const dispatch = useAppDispatch();
 
-    const changeAlgorithmHandler = (e: React.MouseEvent) => {
-        console.log(e.currentTarget.innerHTML);
-        if (e.currentTarget.textContent)
-            dispatch(
-                settingsActions.changeAlgorithm(e.currentTarget.textContent)
-            );
+    const changeAlgorithmHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        dispatch(
+            settingsActions.changeAlgorithm(e.currentTarget.value)
+        );
     };
 
     return (
@@ -26,6 +24,7 @@ const Algorithms = (props: Props) => {
                 return (
                     <button
                         key={algorithm}
+                        value={algorithm}
                         onClick={changeAlgorithmHandler}
                         className={
                             chosenAlgorithm === algorithm ? styles.chosen : undefined
