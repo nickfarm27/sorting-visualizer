@@ -1,19 +1,25 @@
 .slider-input {
     position: absolute;
+    transform: translateY(3px);
     left: 90px;
+    width: 16rem;
     z-index: 10;
     background-color: white;
-    padding: 20px 20px;
+    padding: 15px 15px;
     border-radius: 10px;
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.15);
 }
 
-input[type=number] {
+input[type="number"] {
     padding: 10px;
     width: 2.5rem;
     border: 1px solid rgb(190, 190, 223);
     border-radius: 5px;
-    margin-left: 10px;
     font-family: "Inter";
     font-weight: 500;
     font-size: 0.9rem;
@@ -21,8 +27,103 @@ input[type=number] {
     text-align: center;
     outline: none;
 
-    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
         appearance: none;
         margin: 0;
+    }
+}
+
+input[type="range"] {
+    margin-right: 10px;
+    appearance: none;
+    width: 65%;
+    height: 7px;
+    background: rgba(112, 112, 112, 0.6);
+    border-radius: 5px;
+    cursor: pointer;
+    background-image: linear-gradient(#ff4500, #ff4500);
+    background-size: 70% 100%;
+    background-repeat: no-repeat;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #ff4500;
+        cursor: pointer;
+        box-shadow: 0 0 2px 0 #555;
+        transition: background 0.3s ease-in-out;
+    }
+
+    &::-moz-range-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #ff4500;
+        cursor: ew-resize;
+        box-shadow: 0 0 2px 0 #555;
+        transition: background 0.3s ease-in-out;
+    }
+
+    &::-ms-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #ff4500;
+        cursor: ew-resize;
+        box-shadow: 0 0 2px 0 #555;
+        transition: background 0.3s ease-in-out;
+    }
+
+    &::-webkit-slider-thumb:hover {
+        background: #ff0200;
+    }
+
+    &::-moz-range-thumb:hover {
+        background: #ff0200;
+    }
+
+    &::-ms-thumb:hover {
+        background: #ff0200;
+    }
+
+    /* Input Track */
+    &::-webkit-slider-runnable-track {
+        -webkit-appearance: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    &::-moz-range-track {
+        -webkit-appearance: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    &::-ms-track {
+        -webkit-appearance: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .slider-input {
+        width: auto;
+        bottom: 5.5rem;
+        left: 0.5rem;
+        right: 0.5rem;
+        transform: translateY(0);
+    }
+
+    input[type="range"] {
+        width: 90%;
     }
 }

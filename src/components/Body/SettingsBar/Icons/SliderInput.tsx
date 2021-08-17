@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../../store/hooks";
 import styles from "./SliderInput.module.scss";
@@ -12,12 +12,25 @@ interface Props {
 
 const SliderInput = (props: Props) => {
     const dispatch = useAppDispatch();
+    const sliderRef = useRef<HTMLInputElement>(null);
 
-    const rangeInputChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-        dispatch(props.action(Number(e.currentTarget.value)));
+    useEffect(() => {
+        if (sliderRef.current)
+            sliderRef.current.style.backgroundSize =
+                ((props.value - props.min) * 100) / (props.max - props.min) +
+                "% 100%";
+    }, [props.value, props.min, props.max]);
+
+    const rangeInputChangeHandler = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        dispatch(props.action(Number(e.target.value)));
     };
-    const numberInputChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-        const value = Number(e.currentTarget.value);
+
+    const numberInputChangeHandler = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const value = Number(e.target.value);
         if (value < props.min) {
             dispatch(props.action(props.min));
         } else if (value > props.max) {
@@ -25,12 +38,12 @@ const SliderInput = (props: Props) => {
         } else {
             dispatch(props.action(value));
         }
-        console.log(value);
     };
 
     return (
         <div className={styles["slider-input"]}>
             <input
+                ref={sliderRef}
                 type="range"
                 min={props.min}
                 max={props.max}
