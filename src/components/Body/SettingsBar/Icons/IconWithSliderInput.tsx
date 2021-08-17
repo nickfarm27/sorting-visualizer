@@ -4,6 +4,7 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import SliderInput from "./SliderInput";
 import styles from "./Icon.module.scss";
+import { useAppSelector } from "../../../../store/hooks";
 
 interface Props {
     icon: IconDefinition;
@@ -13,11 +14,13 @@ interface Props {
     max: number;
     value: number;
     action: ActionCreatorWithPayload<number, string>;
+    disable?: boolean;
 }
 
 const IconWithSliderInput = (props: Props) => {
     const [displaySliderInput, setDisplaySliderInput] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
+    const isSorting = useAppSelector((state) => state.settings.sorting);
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -40,6 +43,7 @@ const IconWithSliderInput = (props: Props) => {
             <button
                 className={styles.icon}
                 onClick={toggleSliderInputHandler}
+                disabled={props.disable && isSorting}
             >
                 <FontAwesomeIcon
                     icon={props.icon}

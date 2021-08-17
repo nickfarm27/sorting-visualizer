@@ -81,6 +81,7 @@ const Visualizer = (props: Props) => {
                     <button
                         className={styles["sort-button"]}
                         onClick={sortButtonHandler}
+                        disabled={isSorting}
                     >
                         Sort
                     </button>

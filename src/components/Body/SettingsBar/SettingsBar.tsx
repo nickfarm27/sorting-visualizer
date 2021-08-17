@@ -44,6 +44,7 @@ const SettingsBar = (props: Props) => {
                 max={40}
                 value={arraySize}
                 action={changeArraySizeAction}
+                disable={true}
             />
             {width <= 768 && (
                 <SortIcon />

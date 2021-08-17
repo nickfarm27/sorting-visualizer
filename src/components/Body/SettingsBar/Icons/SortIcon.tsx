@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAppDispatch } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { faSortAmountUp } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Icon.module.scss";
 import { settingsActions } from "../../../../store/settings-slice";
@@ -8,6 +8,7 @@ import { settingsActions } from "../../../../store/settings-slice";
 interface Props {}
 
 const SortIcon = (props: Props) => {
+    const isSorting = useAppSelector((state) => state.settings.sorting)
     const dispatch = useAppDispatch();
 
     function sortButtonHandler() {
@@ -15,7 +16,7 @@ const SortIcon = (props: Props) => {
     }
 
     return (
-        <button className={styles.icon} onClick={sortButtonHandler}>
+        <button className={styles.icon} onClick={sortButtonHandler} disabled={isSorting}>
             <FontAwesomeIcon
                 icon={faSortAmountUp}
                 style={{ fontSize: "1.3rem" }}

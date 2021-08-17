@@ -1,7 +1,7 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ActionCreatorWithoutPayload } from '@reduxjs/toolkit';
-import { useAppDispatch } from '../../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import styles from "./Icon.module.scss";
 
 interface Props {
@@ -12,6 +12,8 @@ interface Props {
 }
 
 const NormalIcon = (props: Props) => {
+    const isSorting = useAppSelector((state) => state.settings.sorting);
+
     const dispatch = useAppDispatch();
 
     const handleClick = () => {
@@ -19,7 +21,7 @@ const NormalIcon = (props: Props) => {
     }
 
     return (
-        <button className={styles.icon} onClick={handleClick}>
+        <button className={styles.icon} onClick={handleClick} disabled={isSorting}>
             <FontAwesomeIcon
                 icon={props.icon}
                 style={{ fontSize: props.fontSize }}

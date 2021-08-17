@@ -10,6 +10,7 @@ const Algorithms = (props: Props) => {
     const chosenAlgorithm = useAppSelector(
         (state) => state.settings.chosenAlgorithm
     );
+    const isSorting = useAppSelector((state) => state.settings.sorting)
     const dispatch = useAppDispatch();
 
     const changeAlgorithmHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,6 +30,7 @@ const Algorithms = (props: Props) => {
                         className={
                             chosenAlgorithm === algorithm ? styles.chosen : undefined
                         }
+                        disabled={isSorting}
                     >
                         {algorithm}
                     </button>
