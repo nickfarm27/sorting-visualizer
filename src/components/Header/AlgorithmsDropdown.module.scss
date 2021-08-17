@@ -3,6 +3,7 @@
 }
 
 .select {
+    text-transform: uppercase;
     appearance: none;
     padding: 10px;
     font-family: "Inter", sans-serif;
@@ -19,6 +20,7 @@
     }
     
     .option {
+        text-transform: initial;
         font-weight: 500;
         font-size: 1rem;
     }
