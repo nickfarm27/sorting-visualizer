@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { faSortAmountUp } from "@fortawesome/free-solid-svg-icons";
+import { faSortAmountDownAlt } from "@fortawesome/free-solid-svg-icons";
 import { settingsActions } from "../../../../store/settings-slice";
 import styles from "./Icon.module.scss";
 
@@ -18,8 +18,8 @@ const SortIcon = (props: Props) => {
     return (
         <button className={`${styles.icon} ${styles["sort-button"]}`} onClick={sortButtonHandler} disabled={isSorting}>
             <FontAwesomeIcon
-                icon={faSortAmountUp}
-                style={{ fontSize: "1.3rem" }}
+                icon={faSortAmountDownAlt}
+                style={{ fontSize: "1.2rem", transform: "rotateZ(-90deg)" }}
             />
             <p className={styles.name}>SORT</p>
         </button>

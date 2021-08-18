@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import SliderInput from "./SliderInput";
-import styles from "./Icon.module.scss";
 import { useAppSelector } from "../../../../store/hooks";
+import { CSSTransition } from "react-transition-group";
+import styles from "./Icon.module.scss";
 
 interface Props {
     icon: IconDefinition;
@@ -51,14 +52,32 @@ const IconWithSliderInput = (props: Props) => {
                 />
                 <p className={styles.name}>{props.name}</p>
             </button>
-            {displaySliderInput && (
+            <CSSTransition
+                in={displaySliderInput}
+                timeout={300}
+                classNames={{
+                    enter: styles["slider-enter"],
+                    enterActive: styles["slider-enter-active"],
+                    exit: styles["slider-exit"],
+                    exitActive: styles["slider-exit-active"],
+                }}
+                unmountOnExit
+                >
                 <SliderInput
                     min={props.min}
                     max={props.max}
                     value={props.value}
                     action={props.action}
                 />
-            )}
+            </CSSTransition>
+            {/* {displaySliderInput && (
+                <SliderInput
+                    min={props.min}
+                    max={props.max}
+                    value={props.value}
+                    action={props.action}
+                />
+            )} */}
         </div>
     );
 };

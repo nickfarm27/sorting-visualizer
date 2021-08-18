@@ -18,20 +18,20 @@
     height: 64px;
     width: 64px;
     cursor: pointer;
-    
+
     &:hover {
         transition: box-shadow 300ms ease;
         color: var(--theme-text-hover);
-        box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
-        -webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
-        -moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.15);
+        box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.15);
+        -webkit-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.15);
     }
-    
+
     &:active {
         transition: none;
-        box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
-        -webkit-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
-        -moz-box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
+        box-shadow: 0px 2px 14px 0px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0px 2px 14px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0px 2px 14px 0px rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -49,6 +49,26 @@
     color: white;
 }
 
+.slider-enter {
+    opacity: 0;
+    transform: scale(0.8) !important;
+}
+.slider-enter-active {
+    opacity: 1;
+    transform: translateY(3px) !important;
+    transition: opacity 300ms, transform 300ms;
+}
+.slider-exit {
+    opacity: 1;
+}
+.slider-exit-active {
+    opacity: 0;
+    transform: scale(0.8) !important;
+    transition: opacity 300ms, transform 300ms;
+}
+
 @media (max-width: 768px) {
-    
+    .slider-enter-active {
+        transform: translateY(0) !important;
+    }
 }
